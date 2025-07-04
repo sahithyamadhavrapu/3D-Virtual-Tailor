@@ -1,0 +1,104 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
+function App() {
+  const [image, setImage] = useState(null);
+  const [height, setHeight] = useState('');
+  const [result, setResult] = useState(null);
+
+  const handleUpload = async () => {
+    if (!image || !height) {
+      alert("Please select an image and enter your height.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('height', height);
+
+    try {
+      const res = await axios.post('http://localhost:5000/upload', formData);
+      setResult(res.data);
+    } catch (err) {
+      alert("Error uploading data. Make sure backend is running.");
+    }
+  };
+
+  return (
+    <div style={{ padding: '30px' }}>
+      <h1>3D Virtual Tailor - Image Upload</h1>
+    import React, { useState } from 'react';
+import axios from 'axios';
+
+function App() {
+  const [image, setImage] = useState(null);
+  const [height, setHeight] = useState('');
+  const [result, setResult] = useState(null);
+
+  const handleUpload = async () => {
+    if (!image || !height) {
+      alert("Please select an image and enter your height.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('height', height);
+
+    try {
+      const res = await axios.post('http://localhost:5000/upload', formData);
+      setResult(res.data);
+    } catch (err) {
+      alert("Error uploading data. Make sure backend is running.");
+    }
+  };
+
+  return (
+    <div style={{ padding: '30px' }}>
+      <h1>3D Virtual Tailor - Image Upload</h1>
+
+import React, { useState } from 'react';
+import axios from 'axios';
+
+function App() {
+  const [image, setImage] = useState(null);
+  const [height, setHeight] = useState('');
+  const [result, setResult] = useState(null);
+
+  const handleUpload = async () => {
+    if (!image || !height) {
+      alert("Please select an image and enter your height.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('height', height);
+
+    try {
+      const res = await axios.post('http://localhost:5000/upload', formData);
+      setResult(res.data);
+    } catch (err) {
+      alert("Error uploading data. Make sure backend is running.");
+    }
+  };
+
+  return (
+    <div style={{ padding: '30px' }}>
+      <h1>3D Virtual Tailor - Image Upload</h1>
+      <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} /><br /><br />
+      <input type="number" placeholder="Enter your height in cm" value={height} onChange={(e) => setHeight(e.target.value)} /><br /><br />
+
+      <button onClick={handleUpload}>Upload & Analyze</button>
+
+      {result && (
+        <div style={{ marginTop: '20px' }}>
+          <h3>Measurements:</h3>
+          <p><strong>Shoulder Width:</strong> {result.shoulder_width_cm} cm</p>
+          <p><strong>Hip Width:</strong> {result.hip_width_cm} cm</p>
+          <p><strong>User Height:</strong> {result.user_height_cm} cm</p>
+        </div>
+      )}
+    </div>
+  );
+}
